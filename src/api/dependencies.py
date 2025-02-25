@@ -4,7 +4,8 @@ from fastapi import Depends
 from sqlalchemy import Connection, Engine, create_engine
 
 from api.settings import ApiSettings
-from service.repository import GenomeRepository
+from service.repository import SequenceRepository
+from service.sequence_service import SequenceService
 
 
 def get_api_settings() -> ApiSettings:
@@ -18,5 +19,12 @@ def get_db_connection(db_engine: Annotated[Engine, Depends(get_db_engine)]) -> G
     with db_engine.connect() as connection:
         yield connection
 
-def get_genome_repository(connection: Annotated[Connection, Depends(get_db_connection)]) -> GenomeRepository:
-    return GenomeRepository(connection=connection)
+def get_sequence_repository(
+    connection: Annotated[Connection, Depends(get_db_connection)]
+) -> SequenceRepository:
+    return SequenceRepository(connection=connection)
+
+def get_sequence_service(
+    sequence_repostitory: Annotated[SequenceRepository, Depends(get_sequence_repository)]
+) -> SequenceService:
+    return SequenceService(sequence_repository=sequence_repostitory)

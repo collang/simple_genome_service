@@ -8,6 +8,8 @@ fastapi==0.115.8
     # via -r requirements/requirements.in
 idna==3.10
     # via anyio
+orjson==3.10.15
+    # via -r requirements/requirements.in
 pydantic==2.10.6
     # via
     #   -r requirements/requirements.in

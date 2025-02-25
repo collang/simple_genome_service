@@ -1,7 +1,7 @@
-from service.repository import GenomeRepository
+from service.repository import SequenceRepository
 
 
 def handle_get_sequences(
-    genome_repository: GenomeRepository        
+    genome_repository: SequenceRepository        
 ):
     genome_repository.get

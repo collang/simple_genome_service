@@ -1,4 +1,3 @@
-from tkinter import W
 from typing import List
 from fastapi import ApiRouter, FastAPI
 
